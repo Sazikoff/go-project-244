@@ -10,8 +10,8 @@
 ## Setup
 
 ```bash
-git clone git@github.com:Sazikoff/go-project-242.git
-cd go-project-242
+git clone git@github.com:Sazikoff/go-project-244.git
+cd go-project-244
 make install
 ```
 
