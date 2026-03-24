@@ -1,9 +1,9 @@
 package main
 
 import (
-	// "code"
-	// "fmt"
+	"code"
 	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -12,7 +12,7 @@ import (
 
 func main() {
 	app := &cli.Command{
-		Name:  "gendiff",
+		Name: "gendiff",
 
 		Usage: "Compares two configuration files and shows a difference.",
 
@@ -20,15 +20,27 @@ func main() {
 			&cli.StringFlag{
 				Name:    "format",
 				Aliases: []string{"f"},
-				Value:   "stylish",
+				Value:   "json",
 				Usage:   "string  output format",
 			},
+		},
+
+		Action: func(_ context.Context, cmd *cli.Command) error {
+			if cmd.NArg() == 0 {
+				return fmt.Errorf("path is required")
+			}
+
+			path := cmd.Args().Get(0)
+
+			data, _ := code.GenDiff(path, "file2.json", cmd.String("format"))
+
+			fmt.Println(data)
+
+			return nil
 		},
 	}
 
 	if err := app.Run(context.Background(), os.Args); err != nil {
 		log.Fatal(err)
 	}
-	// result, _ := code.GenDiff("filepath1", "filepath2", "format")
-	// fmt.Println(result)
 }
