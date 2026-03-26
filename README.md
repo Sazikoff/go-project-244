@@ -1,4 +1,5 @@
-### Hexlet tests and linter status:
+### Hexlet tests and linter status
+
 [![Actions Status](https://github.com/Sazikoff/go-project-244/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Sazikoff/go-project-244/actions)
 
 ## Requirements
@@ -26,3 +27,7 @@ make lint
 ```bash
 make test
 ```
+
+## Demo
+
+[![CLI Demo]( https://asciinema.org/a/CRPCPsRybkM6UQj1.svg)]( https://asciinema.org/a/CRPCPsRybkM6UQj1)

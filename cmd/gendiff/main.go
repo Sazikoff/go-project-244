@@ -30,9 +30,14 @@ func main() {
 				return fmt.Errorf("path is required")
 			}
 
-			path := cmd.Args().Get(0)
+			path1 := cmd.Args().Get(0)
+			path2 := cmd.Args().Get(1)
 
-			data, _ := code.GenDiff(path, "file2.json", cmd.String("format"))
+			data, err := code.GenDiff(path1, path2, cmd.String("format"))
+
+			if err != nil {
+				fmt.Println(err)
+			}
 
 			fmt.Println(data)
 
