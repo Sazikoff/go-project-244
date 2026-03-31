@@ -10,7 +10,7 @@ run:
 	go run ./cmd/gendiff/
 
 test:
-	go test -v .
-	
+	go test -v ./...
+
 lint:
 	golangci-lint run

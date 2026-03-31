@@ -3,6 +3,7 @@ module code
 go 1.25
 
 require (
+	github.com/magiconair/properties v1.8.10
 	github.com/urfave/cli/v3 v3.7.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.4
 )
