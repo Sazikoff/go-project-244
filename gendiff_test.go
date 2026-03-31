@@ -11,6 +11,9 @@ func TestGenDiff(t *testing.T) {
 		t.Fatalf("failed to read expected file: %v", err)
 	}
 
+	file1 := "testdata/fixture/file1.json"
+	file2 := "testdata/fixture/file2.json"
+
 	cases := []struct {
 		name    string
 		file1   string
@@ -21,8 +24,8 @@ func TestGenDiff(t *testing.T) {
 	}{
 		{
 			name:    "valid json files",
-			file1:   "testdata/fixture/file1.json",
-			file2:   "testdata/fixture/file2.json",
+			file1:   file1,
+			file2:   file2,
 			format:  "json",
 			want:    string(expected),
 			wantErr: false,
@@ -30,14 +33,14 @@ func TestGenDiff(t *testing.T) {
 		{
 			name:    "file not exist",
 			file1:   "testdata/fixture/not_exist.json",
-			file2:   "testdata/fixture/file2.json",
+			file2:   file2,
 			format:  "json",
 			wantErr: true,
 		},
 		{
 			name:    "invalid json",
 			file1:   "testdata/fixture/bad.json",
-			file2:   "testdata/fixture/file2.json",
+			file2:   file2,
 			format:  "json",
 			wantErr: true,
 		},
