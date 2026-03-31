@@ -1,8 +1,7 @@
 ### Hexlet tests and linter status
 
 [![Actions Status](https://github.com/Sazikoff/go-project-244/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Sazikoff/go-project-244/actions)
-[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=Sazikoff_go-project-244)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Sazikoff_go-project-244&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Sazikoff_go-project-244)
 ## Requirements
 
 * Go 1.19
