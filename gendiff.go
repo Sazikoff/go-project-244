@@ -7,6 +7,8 @@ import (
 	// "go.yaml.in/yaml/v3"
 )
 
+// GenDiff reads and parses two files, computes the differences between them,
+// and returns the result formatted according to the specified format.
 func GenDiff(filepath1, filepath2, format string) (string, error) {
 
 	data1, err := internal.ParseFile(filepath1)

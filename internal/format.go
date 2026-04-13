@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// Format converts a slice of differences into a human-readable string representation
 func Format(diffs []Diff) string {
     var b strings.Builder
 

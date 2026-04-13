@@ -8,6 +8,7 @@ import (
 	"go.yaml.in/yaml/v3"
 )
 
+// ParseFile reads and parses a JSON or YAML file into a map.
 func ParseFile(path string) (map[string]any, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {

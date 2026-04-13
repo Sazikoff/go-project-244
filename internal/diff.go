@@ -9,8 +9,9 @@ type Diff struct {
 	V2   any
 }
 
-// ComputeDiff — временная заглушка.
-// Просто возвращает первый аргумент без изменений.
+// ComputeDiff returns a sorted list of differences between two maps.
+// Each Diff entry indicates added (+), removed (-), unchanged ( ),
+// or modified (+/-) keys
 func ComputeDiff(data1, data2 map[string]any) []Diff {
 
     // объединение мапов в слайс, сортировка
@@ -48,6 +49,7 @@ func ComputeDiff(data1, data2 map[string]any) []Diff {
 
 }
 
+// unionKeys returns a sorted slice of unique keys from both maps m1 and m2
 func unionKeys(m1, m2 map[string]any) []string {
 	keysMap := make(map[string]struct{})
 
