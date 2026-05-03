@@ -21,9 +21,9 @@ func GenDiff(filepath1, filepath2, format string) (string, error) {
 		return "", err
 	}
 
-	diffs := internal.ComputeDiff(data1, data2)
+	diffs := internal.BuildDiff(data1, data2)
 
-	out := internal.Format(diffs)
+	out := internal.Format(diffs, 0)
 
 	return out, nil
 }

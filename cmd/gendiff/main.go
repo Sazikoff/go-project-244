@@ -20,7 +20,7 @@ func main() {
 			&cli.StringFlag{
 				Name:    "format",
 				Aliases: []string{"f"},
-				Value:   "json",
+				Value:   "stylish",
 				Usage:   "string  output format",
 			},
 		},
@@ -33,7 +33,7 @@ func main() {
 			path1 := cmd.Args().Get(0)
 			path2 := cmd.Args().Get(1)
 
-			data, err := code.GenDiff(path1, path2, cmd.String("format"))
+			data, err := code.GenDiff(path1, path2, cmd.String("stylish"))
 
 			if err != nil {
 				fmt.Println(err)

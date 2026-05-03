@@ -6,29 +6,46 @@ import (
 )
 
 // Format converts a slice of differences into a human-readable string representation
-func Format(diffs []Diff) string {
-    var b strings.Builder
+func Format(diffs []Diff2, n int) string {
+	var b strings.Builder
+	var v1, v2 string
+    
+	b.WriteString("{\n")
+    s := strings.Repeat("    ", n) // тут  4 пробела
+    
+	for _, d := range diffs {
+        
+		if d.Wrap != nil {
+			v1 = Format(d.Wrap, n+1)
+			v2 = Format(d.Wrap, n+1)
+		} else {
+			v1 = fmt.Sprintf("%v", d.V1)
+			if v1 == "<nil>" {
+				v1 = "null"
+			}
+			v2 = fmt.Sprintf("%v", d.V2)
+			if v2 == "<nil>" {
+				v2 = "null"
+			}
+		}
 
-    b.WriteString("{\n")
+		switch d.Type {
 
-    for _, d := range diffs {
-        switch d.Type {
+		case "-":
+			fmt.Fprintf(&b, "%s  - %s: %s\n", s, d.Key, v1) //тут по 2 пробела перед +/-
 
-        case "-":
-            fmt.Fprintf(&b, "  - %s: %v\n", d.Key, d.V1)
+		case "+":
+			fmt.Fprintf(&b, "%s  + %s: %s\n", s, d.Key, v2) //тут по 2 пробела перед +/-
 
-        case "+":
-            fmt.Fprintf(&b, "  + %s: %v\n", d.Key, d.V2)
+		case " ":
+			fmt.Fprintf(&b, "%s    %s: %s\n", s, d.Key, v1) //тут по 2 пробела перед +/-
 
-        case " ":
-            fmt.Fprintf(&b, "    %s: %v\n", d.Key, d.V1)
-
-        case "+/-":
-            fmt.Fprintf(&b, "  - %s: %v\n", d.Key, d.V1)
-            fmt.Fprintf(&b, "  + %s: %v\n", d.Key, d.V2)
-        }
-    }
-
-    b.WriteString("}")
-    return b.String()
+		case "+/-":
+			fmt.Fprintf(&b, "%s  - %s: %s\n", s, d.Key, v1) //тут по 2 пробела перед +/-
+			fmt.Fprintf(&b, "%s  + %s: %s\n", s, d.Key, v2) //тут по 2 пробела перед +/-
+		}
+	}
+    fmt.Fprintf(&b, "%s}", s)
+	// b.WriteString("}")
+	return b.String()
 }
