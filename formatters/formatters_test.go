@@ -2,15 +2,15 @@ package formatters
 
 import (
 	"testing"
-	."code/internal"
+	"code/internal"
 )
 
 func TestFormatStylish(t *testing.T) {
-	diffs := []Diff2{
+	diffs := []internal.Diff2{
 		{Key: "a", Type: " ", V1: 1},
-		{Key: "b", Type: "-", V1: 2, Wrap: []Diff2{
+		{Key: "b", Type: "-", V1: 2, Wrap: []internal.Diff2{
 			{Key: "a2", Type: " ", V1: 5},
-			{Key: "b2", Type: " ", V1: 6, Wrap: []Diff2{
+			{Key: "b2", Type: " ", V1: 6, Wrap: []internal.Diff2{
 				{Key: "a4", Type: " ", V1: nil},
 			}},
 		}},
@@ -39,11 +39,11 @@ func TestFormatStylish(t *testing.T) {
 }
 
 func TestFormatPlain(t *testing.T) {
-	diffs := []Diff2{
+	diffs := []internal.Diff2{
 		{Key: "a", Type: " ", V1: 1},
-		{Key: "b", Type: "-", V1: 2, Wrap: []Diff2{
+		{Key: "b", Type: "-", V1: 2, Wrap: []internal.Diff2{
 			{Key: "a2", Type: " ", V1: 5},
-			{Key: "b2", Type: " ", V1: 6, Wrap: []Diff2{
+			{Key: "b2", Type: " ", V1: 6, Wrap: []internal.Diff2{
 				{Key: "a4", Type: " ", V1: nil},
 			}},
 		}},
