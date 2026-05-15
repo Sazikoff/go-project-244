@@ -1,6 +1,7 @@
 package code
 
 import (
+	"code/formatters"
 	"code/internal"
 	// "encoding/json"
 	// "errors"
@@ -23,7 +24,16 @@ func GenDiff(filepath1, filepath2, format string) (string, error) {
 
 	diffs := internal.BuildDiff(data1, data2)
 
-	out := internal.Format(diffs, 0)
+	var out string
+
+	switch format {
+	case "stylish":
+		out = formatters.FormatStylish(diffs, 0)
+	case "plain":
+		out = formatters.FormatPlain(diffs)
+	}
+
+
 
 	return out, nil
 }

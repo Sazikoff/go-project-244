@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/urfave/cli/v3"
 )
@@ -32,8 +33,8 @@ func main() {
 
 			path1 := cmd.Args().Get(0)
 			path2 := cmd.Args().Get(1)
-
-			data, err := code.GenDiff(path1, path2, cmd.String("stylish"))
+			format := strings.ToLower(cmd.String("format"))
+			data, err := code.GenDiff(path1, path2, format)
 
 			if err != nil {
 				fmt.Println(err)
