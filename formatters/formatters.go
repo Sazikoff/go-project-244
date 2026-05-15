@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"slices"
 	"strings"
-	."code/internal"
+	"code/internal"
 )
 
 // FormatStylish converts a slice of differences into a human-readable string representation
-func FormatStylish(diffs []Diff2, n int) string {
+func FormatStylish(diffs []internal.Diff2, n int) string {
 	var b strings.Builder
 	var v1, v2 string
 
@@ -54,7 +54,7 @@ func FormatStylish(diffs []Diff2, n int) string {
 
 var mySlice = []string{"null", "true", "false"}
 
-func FormatPlain(diffs []Diff2, acc ...string) string {
+func FormatPlain(diffs []internal.Diff2, acc ...string) string {
 	var path string
 	var b strings.Builder
 	var v1, v2 string
