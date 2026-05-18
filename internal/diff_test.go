@@ -1,9 +1,8 @@
 package internal
 
 import (
+	"github.com/stretchr/testify/assert"
 	"testing"
-
-	"github.com/magiconair/properties/assert"
 )
 
 func TestBuildDiff(t *testing.T) {

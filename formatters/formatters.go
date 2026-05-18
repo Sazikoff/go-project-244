@@ -1,10 +1,11 @@
 package formatters
 
 import (
+	"code/internal"
+	"encoding/json"
 	"fmt"
 	"slices"
 	"strings"
-	"code/internal"
 )
 
 // FormatStylish converts a slice of differences into a human-readable string representation
@@ -121,4 +122,13 @@ func FormatPlain(diffs []internal.Diff2, acc ...string) string {
 	}
 
 	return result
+}
+
+func FormatJson(diffs []internal.Diff2) string {
+    data, err := json.MarshalIndent(diffs, "", "  ")
+    if err != nil {
+        return ""
+    }
+
+    return string(data)
 }

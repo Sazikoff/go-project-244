@@ -5,11 +5,11 @@ import (
 )
 
 type Diff2 struct {
-	Key  string
-	Type string // "-", "+", " ", "+/-"
-	V1   any
-	V2   any
-	Wrap []Diff2
+	Key  string `json:"key"`
+	Type string `json:"type"` // "-", "+", " ", "+/-"
+	V1   any `json:"oldValue"`
+	V2   any `json:"newValue"`
+	Wrap []Diff2 `json:"children,omitempty"`
 }
 
 // BuildDiff returns a sorted slice of unique keys from both maps m1 and m2

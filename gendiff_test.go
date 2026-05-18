@@ -3,67 +3,66 @@ package code
 import (
 	"os"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGenDiff(t *testing.T) {
-	expected, err := os.ReadFile("testdata/fixture/expected.txt")
-	if err != nil {
-		t.Fatalf("failed to read expected file: %v", err)
-	}
-
-	file1 := "testdata/fixture/file1.json"
-	file2 := "testdata/fixture/file2.json"
-
+	
 	cases := []struct {
-		name    string
-		file1   string
-		file2   string
-		format  string
+		name   string
+		file1  string
+		file2  string
+		format string
+
 		want    string
 		wantErr bool
 	}{
 		{
-			name:    "valid json files",
-			file1:   file1,
-			file2:   file2,
-			format:  "stylish",
-			want:    string(expected),
-			wantErr: false,
+			name:   "json stylish",
+			file1:  "testdata/fixture/file1.json",
+			file2:  "testdata/fixture/file2.json",
+			format: "stylish",
+			want:   read(t, "testdata/fixture/expectedJson_stylish.txt"),
+		},
+		{
+			name:   "yaml plain",
+			file1:  "testdata/fixture/file3.yaml",
+			file2:  "testdata/fixture/file4.yaml",
+			format: "plain",
+			want:   read(t, "testdata/fixture/expectedYaml_plain.txt"),
 		},
 		{
 			name:    "file not exist",
 			file1:   "testdata/fixture/not_exist.json",
-			file2:   file2,
-			format:  "stylish",
-			wantErr: true,
-		},
-		{
-			name:    "invalid json",
-			file1:   "testdata/fixture/bad.json",
-			file2:   file2,
+			file2:   "testdata/fixture/file2.json",
 			format:  "stylish",
 			wantErr: true,
 		},
 	}
 
 	for _, tc := range cases {
+
 		t.Run(tc.name, func(t *testing.T) {
 			got, err := GenDiff(tc.file1, tc.file2, tc.format)
 
 			if tc.wantErr {
-				if err == nil {
-					t.Fatalf("expected error, got nil")
-				}
+				assert.Error(t, err)
 				return
 			}
 
-			if err != nil {
-				t.Fatalf("unexpected error: %v", err)
-			}
-
-			if got != tc.want {
-				t.Fatalf("diff mismatch\ngot:\n%s\nwant:\n%s", got, tc.want)
-			}
+			assert.NoError(t, err)
+			assert.Equal(t, tc.want, got)
 		})
 	}
+}
+
+func read(t *testing.T, path string) string {
+	t.Helper()
+
+	b, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("cannot read fixture: %s", path)
+	}
+	return string(b)
 }

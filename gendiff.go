@@ -31,9 +31,9 @@ func GenDiff(filepath1, filepath2, format string) (string, error) {
 		out = formatters.FormatStylish(diffs, 0)
 	case "plain":
 		out = formatters.FormatPlain(diffs)
+	case "json":
+		out = formatters.FormatJson(diffs)
 	}
-
-
 
 	return out, nil
 }
