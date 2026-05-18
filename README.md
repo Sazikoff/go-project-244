@@ -31,4 +31,7 @@ make test
 
 ## Demo
 
-[![CLI Demo]( https://asciinema.org/a/CRPCPsRybkM6UQj1.svg)]( https://asciinema.org/a/CRPCPsRybkM6UQj1)
+[![CLI Demo][def]]( https://asciinema.org/a/gdJSH7PrRcTlqtMg)
+
+
+[def]: https://asciinema.org/a/gdJSH7PrRcTlqtMg.svg
